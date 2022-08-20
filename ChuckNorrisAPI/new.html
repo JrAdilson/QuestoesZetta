@@ -1,0 +1,40 @@
+<html>
+<head class="bg">
+ <title>Zetta - Chuck Norris Test</title>
+ <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg"> 
+  <div id="main">
+    <!-- Para funcionar a busca, será necessário clicar na imagem do nosso querido Chuck Norris-->
+    <img id="chuckzetta" src="chuckzetta.png" />
+    <div id="data"/>
+  </div>
+  <div id="footer">
+    <p><b>Se Chuck Norris se atrasar, é melhor o tempo andar mais devagar.</b></p>
+    <p>Junior, Adilson - Teste Zetta, 20/08/2022.</p>
+  </div>
+  <script type="text/javascript">
+    function getJoked() {
+      var xmlhttp = new XMLHttpRequest();
+      var url = "https://api.chucknorris.io/jokes/random";
+      xmlhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          var json = JSON.parse(this.responseText);
+          parseJson(json);
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    }
+    function parseJson(json) {
+      var fact = "<b>" + json["value"] + "</b>";
+      document.getElementById("data").innerHTML = fact;
+    }
+    document.getElementById("chuckzetta").addEventListener("click", function() {
+      getJoked();
+    });
+
+    randomFact();
+  </script>
+</body>
+</html>
